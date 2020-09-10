@@ -1,0 +1,42 @@
+
+.notice {
+
+	@include notice-variant($dark-color);
+	border: $border-width solid $dark-color;
+	border-radius: $border-radius;
+	color: $light-color;
+	display: block;
+	padding: $layout-spacing;
+	width: 100%;
+	border-radius: 0;
+	margin-bottom: $unit-4;
+
+	&.notice-error {
+		@include notice-variant($clrs-red);
+	}
+
+	&.notice-info {
+		@include notice-variant($clrs-blue);
+	}
+
+	&.notice-success {
+		@include notice-variant($clrs-green);
+	}
+
+	&.notice-warning {
+		@include notice-variant($clrs-yellow);
+	}
+
+	&.notice-hint {
+		@include notice-variant($highlight-color);
+		color: $dark-color;
+	}
+
+	.feather {
+		display: inline-block;
+		vertical-align: -30%;
+		margin-right: $unit-2;
+	}
+
+}
+

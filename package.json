@@ -1,0 +1,34 @@
+{
+	"name": "living-lab-admin",
+	"version": "1.0.0",
+	"description": "Admin UI for Living Lab",
+	"main": "index.js",
+	"author": "",
+	"license": "MIT",
+	"scripts": {
+		"dev": "npm run development",
+		"development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+		"watch": "npm run development -- --watch",
+		"prod": "npm run production",
+		"production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+	},
+	"devDependencies": {
+		"axios": "^0.19.0",
+		"cross-env": "^6.0.3",
+		"date-fns": "^2.15.0",
+		"laravel-mix": "^4.1.4",
+		"lodash": "^4.17.15",
+		"resolve-url-loader": "^3.1.0",
+		"sass": "^1.22.12",
+		"sass-loader": "^7.3.1",
+		"spectre.css": "^0.5.8",
+		"vue": "^2.6.10",
+		"vue-feather-icons": "^5.0.0",
+		"vue-i18n": "^8.15.1",
+		"vue-router": "^3.1.3",
+		"vue-table-dynamic": "^0.3.1",
+		"vue-template-compiler": "^2.6.10",
+		"vuex": "^3.5.1",
+		"vuex-pathify": "^1.4.1"
+	}
+}

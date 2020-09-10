@@ -1,0 +1,69 @@
+.header {
+
+	padding: $unit-4 0;
+	// background: darken($gray-color-light, 2.5%);
+	// color: $dark-color;
+
+	background: lighten($clrs-black, 15%);
+	color: $gray-color-light;
+
+	.navbar-section {
+		.btn-primary {
+			@include button-variant($primary-color);
+		}
+	}
+
+	.section-menu {
+		flex: 3 0 0;
+	}
+
+	.logo-link {
+		line-height: 1;
+		font-size: $font-size * 1.2;
+		color: $light-color;
+		margin-right: $unit-8;
+	}
+
+	.main-menu {
+
+		margin: 0;
+		padding: 0;
+		display: inline-block;
+		list-style: none;
+
+		li {
+			margin: 0;
+			padding: 0;
+			display: inline-block;
+			// margin-left: $unit-6;
+			+ li {
+				margin-left: $unit-3;
+			}
+		}
+
+		a,
+		.btn-link {
+			// color: darken($gray-color-dark, 5%);
+			color: inherit;
+			font-weight: normal;
+
+			.feather {
+				width: 20px;
+				height: 20px;
+				margin-right: $unit-2;
+				vertical-align: -20%;
+			}
+		}
+
+		.active a {
+			color: $light-color;
+			font-weight: 600;
+		}
+
+		a:hover,
+		a:focus,
+		a:active {
+			color: $light-color;
+		}
+	}
+}

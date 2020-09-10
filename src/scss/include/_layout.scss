@@ -1,0 +1,19 @@
+$grid-spacing: ($layout-spacing / ($layout-spacing * 0 + 1)) * $html-font-size;
+
+.container {
+
+	&.grid-xxs {
+		max-width: $grid-spacing * 2 + $size-xxs;
+	}
+
+}
+
+
+.app-toast {
+	position: absolute;
+	bottom: $layout-spacing-lg;
+	left: $layout-spacing-lg;
+	min-width: $control-width-sm;
+	max-width: $control-width-md;
+	z-index: $zindex-2;
+}

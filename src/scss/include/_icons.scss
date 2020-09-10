@@ -1,0 +1,21 @@
+.icon {
+	font-size: .8rem;
+}
+
+.icon-xs,
+.icon-sm,
+.icon-lg {
+	line-height: $line-height;
+	display: inline-block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	.feather {
+		width: 100%;
+		height: 100%;
+	}
+}
+.icon-sm {
+	width: $unit-4;
+	// height: $unit-4;
+}
