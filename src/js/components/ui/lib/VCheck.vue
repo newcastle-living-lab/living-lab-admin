@@ -4,7 +4,6 @@
 			type="checkbox"
 			:value="value"
 			v-model="val"
-			@change="onChange"
 		>
 		<i class="form-icon"></i> {{ label }}
 	</label>
@@ -23,7 +22,7 @@ export default {
 	props: {
 		label: String,
 		value: [String, Number],
-		selectedValue: [String, Number],
+		selectedValue: [String, Number, Boolean],
 	},
 
 	computed: {

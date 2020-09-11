@@ -10,7 +10,7 @@ $grid-spacing: ($layout-spacing / ($layout-spacing * 0 + 1)) * $html-font-size;
 
 
 .app-toast {
-	position: absolute;
+	position: fixed;
 	bottom: $layout-spacing-lg;
 	left: $layout-spacing-lg;
 	min-width: $control-width-sm;

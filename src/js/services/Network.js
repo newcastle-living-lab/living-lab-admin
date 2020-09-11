@@ -26,6 +26,11 @@ export default {
 			.then(res => res.data)
 	},
 
+	registerUser(user) {
+		return http.post('/users/register', user)
+			.then(res => res.data)
+	},
+
 	getUsers() {
 		return http.get('/users')
 			.then(res => res.data.users);
@@ -70,6 +75,16 @@ export default {
 		const userId = parseInt(id, 10);
 		const data = { password: password };
 		return http.post(`/users/set_initial_password/${userId}/${token}`, data)
+			.then(res => res.data);
+	},
+
+	getSettings(settings) {
+		return http.get(`/settings`, { params: { keys: settings }})
+			.then(res => res.data);
+	},
+
+	saveSettings(settings) {
+		return http.put(`/settings`, settings)
 			.then(res => res.data);
 	}
 

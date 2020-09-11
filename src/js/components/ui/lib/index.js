@@ -1,6 +1,7 @@
 import VFieldset from "./VFieldset";
 import VGroup from "./VGroup";
 import VButton from "./VButton";
+import VCheck from "./VCheck";
 import VCheckList from "./VCheckList";
 import VInput from "./VInput";
 import VTextarea from "./VTextarea";
@@ -13,6 +14,7 @@ export {
 	VFieldset,
 	VGroup,
 	VButton,
+	VCheck,
 	VCheckList,
 	VInput,
 	VTextarea,

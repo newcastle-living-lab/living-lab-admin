@@ -7,6 +7,7 @@ import Network from '@/services/Network';
 export const state = {
 	authUser: null,
 	isLoading: false,
+	config: {},
 	toast: {
 		active: false,
 		message: null,

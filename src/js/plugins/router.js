@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import homeRoutes from '@/modules/home/routes';
 import usersRoutes from '@/modules/users/routes';
 import accountRoutes from '@/modules/account/routes';
+import settingsRoutes from '@/modules/settings/routes';
 
 Vue.use(VueRouter);
 /*
@@ -39,6 +40,7 @@ const router = new VueRouter({
 		...homeRoutes,
 		...usersRoutes,
 		...accountRoutes,
+		...settingsRoutes,
 		// ...profileRoutes,
 	]
 });

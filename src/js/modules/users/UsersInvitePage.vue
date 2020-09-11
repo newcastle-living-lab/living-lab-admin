@@ -8,12 +8,12 @@
 
 			<VFieldset legend="Account details">
 
-				<VGroup name="email" label="Email address" size="sm">
-					<VInput type="email" id="email" v-model="newUser.email" />
-				</VGroup>
-
 				<VGroup name="name" label="Name" size="sm">
 					<VInput type="text" id="name" v-model="newUser.name" />
+				</VGroup>
+
+				<VGroup name="email" label="Email address" size="sm">
+					<VInput type="email" id="email" v-model="newUser.email" />
 				</VGroup>
 
 				<VGroup name="roles" label="Roles" size="sm">

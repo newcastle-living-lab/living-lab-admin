@@ -4609,7 +4609,7 @@ a.text-error:visited {
 }
 
 .app-toast {
-  position: absolute;
+  position: fixed;
   bottom: 1.2rem;
   left: 1.2rem;
   min-width: 320px;
@@ -4719,6 +4719,19 @@ a.text-error:visited {
   margin-right: 1.2rem;
 }
 
+.card.card-sm .card-header,
+.card.card-sm .card-body,
+.card.card-sm .card-footer {
+  padding: 0.6rem;
+  padding-bottom: 0;
+}
+
+.card.card-sm .card-header:last-child,
+.card.card-sm .card-body:last-child,
+.card.card-sm .card-footer:last-child {
+  padding-bottom: 0.6rem;
+}
+
 .card.card-light {
   border: 0;
   border-radius: 0;
@@ -4791,7 +4804,7 @@ a.text-error:visited {
 }
 
 .form-vertical fieldset + fieldset {
-  margin-top: 3.2rem;
+  margin-top: 2.4rem;
 }
 
 .form-input.input-search {

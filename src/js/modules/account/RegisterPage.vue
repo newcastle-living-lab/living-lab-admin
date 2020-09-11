@@ -2,37 +2,37 @@
 
 	<div class="container grid-xxs">
 
-		<PageTitle title="Log in" />
+		<PageTitle title="Create an account" />
 
-		<NoticeView type="error" message="Incorrect email/password" v-if="errorMessage" />
+		<NoticeView type="error" :message="errorMessage" v-if="errorMessage" />
 
-		<form class="form-vertical mb-4" @submit.prevent="doLogin">
+		<form class="form-vertical mb-4" @submit.prevent="doRegister">
 
 			<div class="card card-light">
 
 				<div class="card-body">
 					<div class="form-group">
-						<label class="form-label" for="email">Username or email address</label>
-						<VInput type="text" id="email" v-model="loginForm.email" />
+						<label class="form-label" for="name">Name</label>
+						<VInput type="text" id="name" v-model="newUser.name" />
 					</div>
 					<div class="form-group">
-						<label class="form-label" for="password">Password</label>
-						<VInput type="password" id="password" v-model="loginForm.password" />
+						<label class="form-label" for="email">Email address</label>
+						<VInput type="email" id="email" v-model="newUser.email" />
 					</div>
 				</div>
 				<div class="card-footer">
 					<VButton
 						class="btn-primary btn-block"
-					>Log in</VButton>
+					>Register</VButton>
 				</div>
 
 			</div>
 
 		</form>
 
-		<div class="card card-sm" v-if="config.enableRegistration">
+		<div class="card card-sm">
 			<div class="card-body">
-				<div class="text-center">New to Living Lab? <router-link :to="{ name: 'register' }">Create an account</router-link>.</div>
+				<div class="text-center">Already registered? <router-link :to="{ name: 'login' }">Log in</router-link>.</div>
 			</div>
 		</div>
 
@@ -50,9 +50,9 @@ export default {
 
 	data() {
 		return {
-			loginForm: {
+			newUser: {
+				name: '',
 				email: '',
-				password: '',
 			},
 			errorMessage: false,
 		}
@@ -60,21 +60,19 @@ export default {
 
 	computed: {
 		...get([
-			'config',
 			'authUser',
 		]),
 	},
 
 	methods: {
 
-		doLogin() {
+		doRegister() {
 			this.errorMessage = false;
-			Network.loginUser(this.loginForm.email, this.loginForm.password)
+			Network.registerUser(this.newUser)
 				.then(res => {
 					if (res.success) {
-						dispatch('fetchAuthUser').then(res => {
-							this.$router.push({ name: 'home' });
-						});
+						this.$router.push({ name: 'home' });
+						commit('SET_TOAST', { message: 'Check your email for further instructions.', type: 'success' });
 						return;
 					}
 					this.errorMessage = res.reason;

@@ -58,6 +58,7 @@
 import { get, commit, call, dispatch } from 'vuex-pathify';
 
 import UsersIcon from 'vue-feather-icons/icons/UsersIcon';
+import SettingsIcon from 'vue-feather-icons/icons/SettingsIcon';
 
 export default {
 
@@ -65,6 +66,7 @@ export default {
 
 	components: {
 		UsersIcon,
+		SettingsIcon,
 	},
 
 	computed: {
@@ -88,6 +90,11 @@ export default {
 					label: 'Users',
 					to: { name: 'users' },
 					iconComponent: UsersIcon,
+				});
+				items.push({
+					label: 'Settings',
+					to: { name: 'settings' },
+					iconComponent: SettingsIcon,
 				});
 			}
 

@@ -1,5 +1,6 @@
 import AccountPage from './AccountPage';
 import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
 import VerifyEmailPage from './VerifyEmailPage';
 
 export default [
@@ -7,6 +8,11 @@ export default [
 		path: '/account/login',
 		name: 'login',
 		component: LoginPage,
+	},
+	{
+		path: '/account/register',
+		name: 'register',
+		component: RegisterPage,
 	},
 	{
 		path: '/account/verify_email/:id',
