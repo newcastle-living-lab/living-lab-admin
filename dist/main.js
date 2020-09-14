@@ -3334,6 +3334,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var tabs = [{
@@ -3349,7 +3396,10 @@ var settingsKeys = ['users.enable_registration', 'smtp.from_name', 'smtp.from_em
     return {
       tabs: tabs,
       currentTab: tabs[0].id,
-      settings: {}
+      settings: {},
+      modal: false,
+      importedSettings: '',
+      importError: false
     };
   },
   computed: _objectSpread({}, Object(vuex_pathify__WEBPACK_IMPORTED_MODULE_0__["get"])(['isLoading', 'authUser', 'hasEditRole', 'hasAdminRole'])),
@@ -3385,6 +3435,22 @@ var settingsKeys = ['users.enable_registration', 'smtp.from_name', 'smtp.from_em
         });
       })["finally"](function () {
         return Object(vuex_pathify__WEBPACK_IMPORTED_MODULE_0__["commit"])('STOP_LOADING');
+      });
+    },
+    doImport: function doImport() {
+      try {
+        var data = JSON.parse(this.importedSettings);
+      } catch (err) {
+        this.importError = err.toString();
+        return;
+      }
+
+      this.settings = _objectSpread(_objectSpread({}, this.settings), data);
+      this.importError = false;
+      this.modal = false;
+      Object(vuex_pathify__WEBPACK_IMPORTED_MODULE_0__["commit"])('SET_TOAST', {
+        message: 'The settings have been imported successfully. Click Save to save them.',
+        type: 'success'
       });
     }
   },
@@ -9858,33 +9924,244 @@ var render = function() {
           _c("router-view", { attrs: { settings: _vm.settings } }),
           _vm._v(" "),
           _c("fieldset", { staticClass: "form-actions mt-16" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                attrs: {
-                  type: "submit",
-                  name: "submit-button",
-                  disabled: _vm.isLoading
-                }
-              },
-              [_vm._v("Save all settings")]
-            ),
-            _vm._v(" "),
-            _c("span", {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.isLoading,
-                  expression: "isLoading"
-                }
-              ],
-              staticClass: "loading ml-4"
-            })
+            _c("div", { staticClass: "navbar" }, [
+              _c("div", { staticClass: "navbar-section" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: {
+                      type: "submit",
+                      name: "submit-button",
+                      disabled: _vm.isLoading
+                    }
+                  },
+                  [_vm._v("Save all settings")]
+                ),
+                _vm._v(" "),
+                _c("span", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.isLoading,
+                      expression: "isLoading"
+                    }
+                  ],
+                  staticClass: "loading ml-4"
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "navbar-section" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-grey mr-2",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.modal = "export"
+                      }
+                    }
+                  },
+                  [_vm._v("Export")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-grey",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.modal = "import"
+                      }
+                    }
+                  },
+                  [_vm._v("Import")]
+                )
+              ])
+            ])
           ])
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "modal", class: _vm.modal == "export" ? "active" : "" },
+        [
+          _c("a", {
+            staticClass: "modal-overlay",
+            attrs: { "aria-label": "Close" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.modal = ""
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-container" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c("button", {
+                staticClass: "btn btn-clear float-right",
+                attrs: { "aria-label": "Close" },
+                on: {
+                  click: function($event) {
+                    _vm.modal = ""
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-title h5" }, [
+                _vm._v("Export settings")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "content" }, [
+                _c(
+                  "textarea",
+                  {
+                    staticClass: "form-input",
+                    attrs: { rows: "10" },
+                    on: {
+                      focus: function($event) {
+                        return $event.target.select()
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(JSON.stringify(_vm.settings, null, 4)))]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-link",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.modal = ""
+                    }
+                  }
+                },
+                [_vm._v("Close")]
+              )
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "modal", class: _vm.modal == "import" ? "active" : "" },
+        [
+          _c("a", {
+            staticClass: "modal-overlay",
+            attrs: { "aria-label": "Close" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.modal = ""
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-container" }, [
+            _c(
+              "div",
+              { staticClass: "modal-header" },
+              [
+                _c("button", {
+                  staticClass: "btn btn-clear float-right",
+                  attrs: { "aria-label": "Close" },
+                  on: {
+                    click: function($event) {
+                      _vm.modal = ""
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-title h5" }, [
+                  _vm._v("Import settings")
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "Paste the settings into the box below and click Import."
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.importError
+                  ? _c("NoticeView", {
+                      attrs: { type: "error", message: _vm.importError }
+                    })
+                  : _vm._e()
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("div", { staticClass: "content" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.importedSettings,
+                      expression: "importedSettings"
+                    }
+                  ],
+                  staticClass: "form-input",
+                  attrs: { rows: "10" },
+                  domProps: { value: _vm.importedSettings },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.importedSettings = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success mr-2",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.doImport()
+                    }
+                  }
+                },
+                [_vm._v("Import")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-link",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.modal = ""
+                    }
+                  }
+                },
+                [_vm._v("Close")]
+              )
+            ])
+          ])
+        ]
       )
     ],
     1

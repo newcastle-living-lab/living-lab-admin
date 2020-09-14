@@ -21,11 +21,58 @@
 			<router-view :settings="settings"></router-view>
 
 			<fieldset class="form-actions mt-16">
-				<button type="submit" class="btn btn-primary" name="submit-button" :disabled="isLoading">Save all settings</button>
-				<span class="loading ml-4" v-show="isLoading"></span>
+				<div class="navbar">
+					<div class="navbar-section">
+						<button type="submit" class="btn btn-primary" name="submit-button" :disabled="isLoading">Save all settings</button>
+						<span class="loading ml-4" v-show="isLoading"></span>
+					</div>
+					<div class="navbar-section">
+						<button class="btn btn-grey mr-2" @click.prevent="modal='export'">Export</button>
+						<button class="btn btn-grey" @click.prevent="modal='import'">Import</button>
+					</div>
+				</div>
 			</fieldset>
 
 		</form>
+
+		<div class="modal" :class="modal == 'export' ? 'active' : ''">
+			<a class="modal-overlay" aria-label="Close" @click.prevent="modal=''"></a>
+			<div class="modal-container">
+				<div class="modal-header">
+					<button class="btn btn-clear float-right" aria-label="Close" @click="modal=''"></button>
+					<div class="modal-title h5">Export settings</div>
+				</div>
+				<div class="modal-body">
+					<div class="content">
+						<textarea class="form-input" rows="10" @focus="$event.target.select()">{{ JSON.stringify(settings, null, 4) }}</textarea>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-link" @click.prevent="modal=''">Close</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal" :class="modal == 'import' ? 'active' : ''">
+			<a class="modal-overlay" aria-label="Close" @click.prevent="modal=''"></a>
+			<div class="modal-container">
+				<div class="modal-header">
+					<button class="btn btn-clear float-right" aria-label="Close" @click="modal=''"></button>
+					<div class="modal-title h5">Import settings</div>
+					<p>Paste the settings into the box below and click Import.</p>
+					<NoticeView type="error" :message="importError" v-if="importError" />
+				</div>
+				<div class="modal-body">
+					<div class="content">
+						<textarea class="form-input" rows="10" v-model="importedSettings"></textarea>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-success mr-2" @click.prevent="doImport()">Import</button>
+					<button class="btn btn-link" @click.prevent="modal=''">Close</button>
+				</div>
+			</div>
+		</div>
 
 	</div>
 
@@ -60,7 +107,10 @@ export default {
 		return {
 			tabs: tabs,
 			currentTab: tabs[0].id,
-			settings: {}
+			settings: {},
+			modal: false,
+			importedSettings: '',
+			importError: false,
 		}
 	},
 
@@ -95,6 +145,22 @@ export default {
 				})
 				.catch((err) => commit('SET_TOAST', { message: 'Error saving settings: ' + err, type: 'error' }))
 				.finally(() => commit('STOP_LOADING'));
+		},
+
+		doImport() {
+
+			try {
+				var data = JSON.parse(this.importedSettings);
+			} catch (err) {
+				this.importError = err.toString();
+				return;
+			}
+
+			this.settings = {...this.settings, ...data};
+			this.importError = false;
+			this.modal = false;
+
+			commit('SET_TOAST', { message: 'The settings have been imported successfully. Click Save to save them.', type: 'success'});
 		}
 
 	},
