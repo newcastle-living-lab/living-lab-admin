@@ -5,7 +5,14 @@
 		<PageTitle title="Settings" />
 
 		<ul class="tab mb-8">
-			<router-link
+			<li
+				v-for="(tab, idx) in tabs"
+				:key="idx"
+				:class="tab.id == currentTab ? 'active' : ''"
+				class="tab-item"
+				tag="li"
+			><a href="#" @click.prevent="currentTab = tab.id">{{ tab.label }}</a></li>
+			<!-- <router-link
 				v-for="(tab, idx) in tabs"
 				:key="idx"
 				:to="{ name: tab.id }"
@@ -13,12 +20,14 @@
 				tag="li"
 				active-class="active"
 				exact
-			><a>{{ tab.label }}</a></router-link>
+			><a>{{ tab.label }}</a></router-link> -->
 		</ul>
 
 		<form class="form-vertical" @submit.prevent="submitForm">
 
-			<router-view :settings="settings"></router-view>
+			<!-- <router-view :settings="settings"></router-view> -->
+			<GeneralSettings :settings="settings" v-show="currentTab == 'general_settings'" />
+			<EmailSettings :settings="settings" v-show="currentTab == 'email_settings'" />
 
 			<fieldset class="form-actions mt-16">
 				<div class="navbar">
@@ -84,6 +93,9 @@ import { get, commit, call, dispatch } from 'vuex-pathify';
 
 import Network from '@/services/Network';
 
+import EmailSettings from './EmailSettings';
+import GeneralSettings from './GeneralSettings';
+
 const tabs = [
 	{ id: 'general_settings', label: 'General' },
 	{ id: 'email_settings', label: 'Email' },
@@ -102,6 +114,11 @@ const settingsKeys = [
 ];
 
 export default {
+
+	components: {
+		GeneralSettings,
+		EmailSettings,
+	},
 
 	data() {
 		return {
@@ -167,9 +184,9 @@ export default {
 
 	mounted() {
 		this.getSettings();
-		if (this.$route.name === 'settings') {
-			this.$router.push({ name: 'general_settings' });
-		}
+		// if (this.$route.name === 'settings') {
+		// 	this.$router.push({ name: 'general_settings' });
+		// }
 	}
 
 }

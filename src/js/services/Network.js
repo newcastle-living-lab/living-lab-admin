@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import pick from 'lodash/pick';
+
 var baseURL = '/api';
 
 const http = axios.create({
@@ -56,6 +58,21 @@ export default {
 	saveUser(user) {
 		const userId = parseInt(user.id, 10);
 		return http.put(`/users/${userId}`, user)
+			.then(res => res.data);
+	},
+
+	saveAccount(user) {
+		const userData = pick(user, ['name', 'email']);
+		return http.put(`/auth/user`, userData)
+			.then(res => res.data);
+	},
+
+	changePassword(currentPassword, newPassword) {
+		const data = {
+			current_password: currentPassword,
+			new_password: newPassword,
+		};
+		return http.post(`/auth/password`, data)
 			.then(res => res.data);
 	},
 

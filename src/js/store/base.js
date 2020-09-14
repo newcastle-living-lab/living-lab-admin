@@ -65,7 +65,7 @@ export const mutations = {
 export const actions = {
 
 	fetchAuthUser({ state, commit }) {
-		commit('SET_AUTH_USER', null);
+		// commit('SET_AUTH_USER', null);
 		return Network.getAuthUser().then(user => {
 			commit('SET_AUTH_USER', user);
 			return user;
@@ -74,6 +74,7 @@ export const actions = {
 
 	logout({ state, commit, dispatch }) {
 		return Network.logoutUser().then(res => {
+			commit('SET_AUTH_USER', null);
 			dispatch('fetchAuthUser');
 		});
 	}

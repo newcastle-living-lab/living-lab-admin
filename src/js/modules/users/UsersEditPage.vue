@@ -13,12 +13,12 @@
 
 			<VFieldset legend="Account details">
 
-				<VGroup name="email" label="Email address" size="sm">
-					<VInput type="email" id="email" v-model="user.email" />
-				</VGroup>
-
 				<VGroup name="name" label="Name" size="sm">
 					<VInput type="text" id="name" v-model="user.name" />
+				</VGroup>
+
+				<VGroup name="email" label="Email address" size="sm">
+					<VInput type="email" id="email" v-model="user.email" />
 				</VGroup>
 
 				<VGroup name="roles" label="Roles">
@@ -100,6 +100,8 @@ export default {
 						this.$router.push({ path: '/users' });
 						// this.getUser();
 						// return true;
+					} else {
+						commit('SET_TOAST', { message: 'Error saving user details: ' + res.reason, type: 'error' });
 					}
 				})
 				// .then(() => commit('SET_TOAST', { message: 'User details have been saved.', type: 'success', seconds: 4 }))
