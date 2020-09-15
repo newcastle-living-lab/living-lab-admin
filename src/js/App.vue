@@ -10,6 +10,9 @@
 			<router-view></router-view>
 		</div>
 
+		<AppMeta />
+		<AppLogos />
+
 	</div>
 
 </template>
@@ -26,6 +29,14 @@ export default {
 			'isLoading',
 		]),
 
+	},
+
+	methods: {
+		fetchLogos: call('fetchLogos'),
+	},
+
+	mounted() {
+		this.fetchLogos();
 	}
 
 }

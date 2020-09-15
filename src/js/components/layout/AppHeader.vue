@@ -8,8 +8,11 @@
 				<div class="column col-12">
 					<div class="navbar">
 						<section class="navbar-section section-logo">
-							<router-link :to="{ name: 'home' }" class="logo-link d-inline-block">
-								Living Lab
+							<a :href="config.homeUri" v-if="config && config.homeUri" class="logo-link d-inline-block">
+								{{ homeLabel }}
+							</a>
+							<router-link :to="{ name: 'home' }" v-if="!config.homeUri" class="logo-link d-inline-block">
+								{{ homeLabel }}
 							</router-link>
 							<ul class="main-menu">
 								<router-link
@@ -72,10 +75,19 @@ export default {
 	computed: {
 
 		...get([
+			'config',
 			'authUser',
 			'hasEditRole',
 			'hasAdminRole',
 		]),
+
+		homeLabel() {
+			if (this.config.homeLabel) {
+				return this.config.homeLabel;
+			}
+
+			return 'Living Lab';
+		},
 
 		menuItems() {
 

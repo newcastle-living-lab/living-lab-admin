@@ -103,6 +103,11 @@ export default {
 	saveSettings(settings) {
 		return http.put(`/settings`, settings)
 			.then(res => res.data);
+	},
+
+	getLogos() {
+		return http.get('/logos')
+			.then(res => res.data);
 	}
 
 }

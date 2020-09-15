@@ -13,6 +13,10 @@ export const state = {
 		message: null,
 		type: null,
 		seconds: null
+	},
+	logos: {
+		primary: [],
+		secondary: []
 	}
 };
 
@@ -76,6 +80,15 @@ export const actions = {
 		return Network.logoutUser().then(res => {
 			commit('SET_AUTH_USER', null);
 			dispatch('fetchAuthUser');
+		});
+	},
+
+	fetchLogos({ state, commit }) {
+		return Network.getLogos().then(res => {
+			if (res.success && res.logos) {
+				commit('SET_LOGOS', res.logos);
+			}
+			return res;
 		});
 	}
 

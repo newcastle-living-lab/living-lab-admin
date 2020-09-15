@@ -71,13 +71,22 @@ export default {
 			this.errorMessage = false;
 			Network.loginUser(this.loginForm.email, this.loginForm.password)
 				.then(res => {
-					if (res.success) {
-						dispatch('fetchAuthUser').then(res => {
-							this.$router.push({ name: 'home' });
-						});
-						return;
+					if ( ! res.success) {
+						throw new Error( (res && res.reason ? res.reason : 'Unknown error') );
 					}
-					this.errorMessage = res.reason;
+					return (res.returnTo && res.returnTo.length ? res.returnTo : null);
+				})
+				.then((returnTo) => {
+					dispatch('fetchAuthUser').then(res => {
+						if (returnTo) {
+							window.location.href = returnTo;
+						} else {
+							this.$router.push({ name: 'home' });
+						}
+					});
+				})
+				.catch((err) => {
+					this.errorMessage = err;
 				});
 		}
 

@@ -1,10 +1,12 @@
 {
-	"name": "living-lab-admin",
+	"name": "@newcastle-living-lab/living-lab-admin",
 	"version": "1.0.0",
 	"description": "Admin UI for Living Lab",
-	"main": "index.js",
 	"author": "",
 	"license": "MIT",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
 	"scripts": {
 		"dev": "npm run development",
 		"development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",

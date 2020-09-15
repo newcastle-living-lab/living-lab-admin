@@ -1,0 +1,42 @@
+.footer {
+
+	&.footer-meta {
+
+		margin-top: $unit-16;
+		padding: $unit-2 0;
+		background: $gray-color-light;
+		border-top: $unit-o solid $border-color;
+		color: $gray-color-dark;
+
+		// background: lighten($clrs-black, 25%);
+		// color: $gray-color-light;
+
+		.navbar {
+			.section-logos {
+				.logo-item {
+					margin-left: 0;
+					margin-right: 0;
+				}
+			}
+		}
+
+	}
+
+	&.footer-logos {
+		padding: $unit-8 0;
+	}
+
+	.logo-item {
+		display: inline-block;
+		margin: $unit-4 $unit-6;
+		img {
+			height: $unit-7 * 2;
+			width: auto;
+			max-width: 100%;
+			display: block;
+		}
+	}
+
+}
+
+

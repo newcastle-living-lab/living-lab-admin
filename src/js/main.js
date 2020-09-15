@@ -14,15 +14,24 @@ import PageTitle from '@/components/layout/PageTitle';
 import NoticeView from '@/components/layout/NoticeView';
 import LoadingBar from "@/components/layout/LoadingBar";
 import ToastMessage from "@/components/layout/ToastMessage";
+import AppMeta from "@/components/layout/AppMeta";
+import AppLogos from "@/components/layout/AppLogos";
 Vue.component('AppHeader', AppHeader);
 Vue.component('PageTitle', PageTitle);
 Vue.component('NoticeView', NoticeView);
 Vue.component('LoadingBar', LoadingBar);
 Vue.component('ToastMessage', ToastMessage);
+Vue.component('AppMeta', AppMeta);
+Vue.component('AppLogos', AppLogos);
 
 import Network from './services/Network';
 
 
+/**
+ * Return the value in a type that is inferred from the content.
+ * Used in parsing the data-* attributes on the mount element.
+ *
+ */
 const formatVal = function(value) {
 
 	var falseValues = ['false', 0, undefined, '0', 'no', 'off', 'null', null];
@@ -44,6 +53,10 @@ const formatVal = function(value) {
 }
 
 
+/**
+ * Get all the data-* attributes on the mount element.
+ *
+ */
 const getParams = function(elt) {
 	const el = document.getElementById(elt);
 	var data = {};
