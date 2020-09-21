@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import homeRoutes from '@/modules/home/routes';
-import usersRoutes from '@/modules/users/routes';
-import accountRoutes from '@/modules/account/routes';
-import settingsRoutes from '@/modules/settings/routes';
+import homeRoutes from '@adminRoot/modules/home/routes';
+import usersRoutes from '@adminRoot/modules/users/routes';
+import accountRoutes from '@adminRoot/modules/account/routes';
+import settingsRoutes from '@adminRoot/modules/settings/routes';
 
 Vue.use(VueRouter);
 /*

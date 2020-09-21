@@ -10,7 +10,7 @@ import ClockIcon from 'vue-feather-icons/icons/ClockIcon';
 import CheckIcon from 'vue-feather-icons/icons/CheckIcon';
 import XIcon from 'vue-feather-icons/icons/XIcon';
 
-import statuses from '@/data/user_statuses';
+import statuses from '@adminRoot/data/user_statuses';
 
 export default {
 

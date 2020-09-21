@@ -45,8 +45,8 @@
 
 import { get, commit, call, dispatch } from 'vuex-pathify';
 
-import Network from '@/services/Network';
-import statuses from '@/data/user_statuses';
+import Network from '@adminRoot/services/Network';
+import statuses from '@adminRoot/data/user_statuses';
 
 export default {
 

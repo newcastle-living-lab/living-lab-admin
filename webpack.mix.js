@@ -17,7 +17,7 @@ mix.webpackConfig({
 	resolve: {
 		extensions: ['.js', '.vue', '.json'],
 		alias: {
-			'@': __dirname + '/src/js'
+			'@adminRoot': __dirname + '/src/js',
 		},
 	},
 });

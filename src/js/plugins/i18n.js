@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 
-import language from "@/data/language.json";
+import language from "@adminRoot/data/language.json";
 
 Vue.use(VueI18n);
 

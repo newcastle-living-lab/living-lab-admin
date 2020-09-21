@@ -61,7 +61,7 @@ import { get, commit, call, dispatch } from 'vuex-pathify';
 
 import Trash2Icon from 'vue-feather-icons/icons/Trash2Icon';
 
-import Network from '@/services/Network';
+import Network from '@adminRoot/services/Network';
 
 import UserStatusIcon from './UserStatusIcon';
 import UserRoleIcon from './UserRoleIcon';

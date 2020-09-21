@@ -91,7 +91,7 @@
 
 import { get, commit, call, dispatch } from 'vuex-pathify';
 
-import Network from '@/services/Network';
+import Network from '@adminRoot/services/Network';
 
 import EmailSettings from './EmailSettings';
 import GeneralSettings from './GeneralSettings';
@@ -103,6 +103,8 @@ const tabs = [
 
 const settingsKeys = [
 	'users.enable_registration',
+	'cosmos.auto_save',
+	'cosmos.fathom_site_id',
 	'smtp.from_name',
 	'smtp.from_email',
 	'smtp.from_email',
