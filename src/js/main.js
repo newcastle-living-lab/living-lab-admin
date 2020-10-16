@@ -61,8 +61,13 @@ const getParams = function(elt) {
 	const el = document.getElementById(elt);
 	var data = {};
 	for (var key in el.dataset) {
-		data[key] = formatVal(el.dataset[key]);
+		if (el.dataset[key].substr(0, 1) == '{') {
+			data[key] = JSON.parse(el.dataset[key]);
+		} else {
+			data[key] = formatVal(el.dataset[key]);
+		}
 	}
+	console.log(data);
 	return data;
 }
 

@@ -8,12 +8,9 @@
 				<div class="column col-12">
 					<div class="navbar">
 						<section class="navbar-section section-logo">
-							<a :href="config.homeUri" v-if="config && config.homeUri" class="logo-link d-inline-block">
-								{{ homeLabel }}
+							<a v-for="(label, link) in config.header" :href="link" class="logo-link d-inline-block">
+								{{ label }}
 							</a>
-							<router-link :to="{ name: 'home' }" v-if="!config.homeUri" class="logo-link d-inline-block">
-								{{ homeLabel }}
-							</router-link>
 							<ul class="main-menu">
 								<router-link
 									v-for="(item, idx) in menuItems"

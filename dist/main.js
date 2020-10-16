@@ -2081,9 +2081,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 
 
@@ -11418,39 +11415,20 @@ var render = function() {
               "section",
               { staticClass: "navbar-section section-logo" },
               [
-                _vm.config && _vm.config.homeUri
-                  ? _c(
-                      "a",
-                      {
-                        staticClass: "logo-link d-inline-block",
-                        attrs: { href: _vm.config.homeUri }
-                      },
-                      [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t" +
-                            _vm._s(_vm.homeLabel) +
-                            "\n\t\t\t\t\t\t"
-                        )
-                      ]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                !_vm.config.homeUri
-                  ? _c(
-                      "router-link",
-                      {
-                        staticClass: "logo-link d-inline-block",
-                        attrs: { to: { name: "home" } }
-                      },
-                      [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t" +
-                            _vm._s(_vm.homeLabel) +
-                            "\n\t\t\t\t\t\t"
-                        )
-                      ]
-                    )
-                  : _vm._e(),
+                _vm._l(_vm.config.header, function(label, link) {
+                  return _c(
+                    "a",
+                    {
+                      staticClass: "logo-link d-inline-block",
+                      attrs: { href: link }
+                    },
+                    [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t" + _vm._s(label) + "\n\t\t\t\t\t\t"
+                      )
+                    ]
+                  )
+                }),
                 _vm._v(" "),
                 _c(
                   "ul",
@@ -11486,7 +11464,7 @@ var render = function() {
                   1
                 )
               ],
-              1
+              2
             ),
             _vm._v(" "),
             _c("section", { staticClass: "navbar-section section-user" }, [
@@ -33466,9 +33444,14 @@ var getParams = function getParams(elt) {
   var data = {};
 
   for (var key in el.dataset) {
-    data[key] = formatVal(el.dataset[key]);
+    if (el.dataset[key].substr(0, 1) == '{') {
+      data[key] = JSON.parse(el.dataset[key]);
+    } else {
+      data[key] = formatVal(el.dataset[key]);
+    }
   }
 
+  console.log(data);
   return data;
 };
 

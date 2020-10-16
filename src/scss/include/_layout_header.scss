@@ -21,12 +21,15 @@
 		line-height: 1;
 		font-size: $font-size * 1.2;
 		color: $light-color;
-		margin-right: $unit-8;
+
+		+ .logo-link {
+			margin-left: $unit-4;
+		}
 	}
 
 	.main-menu {
 
-		margin: 0;
+		margin: 0 0 0 $unit-8;
 		padding: 0;
 		display: inline-block;
 		list-style: none;
